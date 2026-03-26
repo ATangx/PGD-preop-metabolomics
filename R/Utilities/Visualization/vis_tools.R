@@ -29,6 +29,17 @@
 #' }
 #'
 #' @export
+# Ensure Arial is registered in R's PostScript/PDF font database.
+# grid::draw_label() uses grid.Call(C_textBounds) which requires this registration
+# regardless of whether the TTF file is physically present. Without this, any
+# draw_label(..., fontfamily = "Arial") call silently crashes the session.
+if (!"Arial" %in% names(grDevices::pdfFonts())) {
+  tryCatch({
+    grDevices::pdfFonts(Arial = grDevices::pdfFonts()[["Helvetica"]])
+    grDevices::postscriptFonts(Arial = grDevices::postscriptFonts()[["Helvetica"]])
+  }, error = function(e) NULL)
+}
+
 #+ Grid Guide for Positioning (cowplot coordinates)
 grdgd <- function(x_max = 8.5, y_max = 11, interval = 0.25, label_interval = 0.5, margins = 0.5) {
   guide_elements <- list(

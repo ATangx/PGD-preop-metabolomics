@@ -33,6 +33,7 @@ docker pull jdpreston30/pgd-preop-metabolomics:latest
 # 3. Run the complete analysis pipeline
 docker run -v $(pwd):/analysis jdpreston30/pgd-preop-metabolomics:latest
 
+
 # Windows users: Replace $(pwd) with:
 # - CMD: docker run -v %cd%:/analysis jdpreston30/pgd-preop-metabolomics:latest
 # - PowerShell: docker run -v ${PWD}:/analysis jdpreston30/pgd-preop-metabolomics:latest

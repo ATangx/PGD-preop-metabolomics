@@ -60,6 +60,13 @@ load_dynamic_config <- function(computer = "auto", config_path = "config_dynamic
     } else if (current_user == "JoshsMacbook2015" || grepl("JoshsMacbook", computer_name) || grepl("JDP", computer_name)) {
       computer <- "desktop"
       cat("🔍 Detected desktop via username/computer name:", current_user, "/", computer_name, "\n")
+    } else if (current_user == "ailintang" || dir.exists("/Users/ailintang")) {
+      computer <- "ailin"
+      cat("🔍 Detected Ailin's machine via username:", current_user, "\n")
+    } else if (file.exists("/.dockerenv") || dir.exists("/onedrive_data")) {
+      # Running inside Docker container with Ailin's mounts
+      computer <- "ailin"
+      cat("🔍 Detected Docker container with Ailin's data mounts\n")
     } else {
       # Fallback: check for specific path signatures
       if (dir.exists("/Users/jdp2019")) {
@@ -69,9 +76,9 @@ load_dynamic_config <- function(computer = "auto", config_path = "config_dynamic
         computer <- "desktop"
         cat("🔍 Detected desktop via path signature\n")
       } else {
-        stop("Could not auto-detect computer. Available: 'laptop' (jdp2019) or 'desktop' (JoshsMacbook2015). ",
+        stop("Could not auto-detect computer. Available: 'laptop' (jdp2019), 'desktop' (JoshsMacbook2015), or 'ailin' (ailintang). ",
              "Current user: ", current_user, ", Computer: ", computer_name,
-             "\nPlease specify computer = 'laptop' or computer = 'desktop'")
+             "\nPlease specify computer = 'laptop', 'desktop', or 'ailin'")
       }
     }
   }
@@ -89,10 +96,22 @@ load_dynamic_config <- function(computer = "auto", config_path = "config_dynamic
   
   # Create substitution variables including derived ones
   substitution_vars <- comp_vars
-  substitution_vars$base_data_path <- glue::glue(
-    raw_config$paths$base_data_path, 
-    .envir = list2env(comp_vars)
-  )
+  
+  # Detect if running inside Docker
+  in_docker <- file.exists("/.dockerenv") || dir.exists("/onedrive_data")
+
+  # Use base_data_path_override if provided, otherwise derive from template
+  # Prefer docker_base_data_path_override when inside Docker
+  if (in_docker && !is.null(comp_vars$docker_base_data_path_override)) {
+    substitution_vars$base_data_path <- comp_vars$docker_base_data_path_override
+  } else if (!is.null(comp_vars$base_data_path_override)) {
+    substitution_vars$base_data_path <- comp_vars$base_data_path_override
+  } else {
+    substitution_vars$base_data_path <- glue::glue(
+      raw_config$paths$base_data_path,
+      .envir = list2env(comp_vars)
+    )
+  }
   
   # Recursively substitute variables in all path strings
   resolve_paths <- function(obj, vars) {
@@ -113,6 +132,28 @@ load_dynamic_config <- function(computer = "auto", config_path = "config_dynamic
   # Resolve all paths
   resolved_config <- raw_config
   resolved_config$paths <- resolve_paths(raw_config$paths, substitution_vars)
+  
+  # Detect if running inside Docker
+  in_docker <- file.exists("/.dockerenv") || dir.exists("/onedrive_data")
+  if (in_docker) cat("🐳 Docker environment detected - using docker_* path overrides\n")
+
+  # Apply any _override variables (e.g. clinical_metadata_override replaces clinical_metadata)
+  # If in Docker and a docker_*_override exists, prefer that over the plain _override
+  for (key in names(comp_vars)) {
+    if (grepl("_override$", key) && !grepl("^docker_", key)) {
+      base_key <- sub("_override$", "", key)
+      docker_key <- paste0("docker_", key)
+      if (base_key %in% names(resolved_config$paths)) {
+        if (in_docker && !is.null(comp_vars[[docker_key]])) {
+          resolved_config$paths[[base_key]] <- comp_vars[[docker_key]]
+          cat("🔧 Applying Docker override for path:", base_key, "\n")
+        } else {
+          resolved_config$paths[[base_key]] <- comp_vars[[key]]
+          cat("🔧 Applying override for path:", base_key, "\n")
+        }
+      }
+    }
+  }
   
   # Remove the computers section from final config
   resolved_config$computers <- NULL
