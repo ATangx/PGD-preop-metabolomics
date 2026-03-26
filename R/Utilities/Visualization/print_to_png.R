@@ -86,8 +86,9 @@ print_to_png <- function(plot, filename, width = 8.5, height = 11, dpi = 600,
     bg = "white"
   )
 
-  # Auto-open in Preview only on first run (or if specified)
-  if (auto_open && !file_exists) {
+  # Auto-open in Preview only on first run (or if specified) - macOS only
+  is_macos <- Sys.info()["sysname"] == "Darwin"
+  if (auto_open && !file_exists && is_macos) {
     system(paste("open", shQuote(filepath)))
     cat("PNG saved and opened in Preview:", filepath, "\n")
     cat("Preview will auto-refresh when you re-run this function!\n")

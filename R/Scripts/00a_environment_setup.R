@@ -39,3 +39,31 @@ library(MetaboAnalystR)
 #+ 0a.4: Check system dependencies
 source("R/Utilities/Helpers/check_system_dependencies.R")
 check_system_dependencies()
+#+ 0a.5: Register Arial in R's PostScript/PDF font database (always required)
+# grid::draw_label() and cowplot use grid.Call(C_textBounds) which looks up fonts
+# in grDevices::pdfFonts(), NOT in systemfonts. This must always be registered
+# regardless of whether the TTF file is physically present on the system.
+tryCatch({
+  grDevices::pdfFonts(Arial = grDevices::pdfFonts()[["Helvetica"]])
+  grDevices::postscriptFonts(Arial = grDevices::postscriptFonts()[["Helvetica"]])
+  message("Arial registered in PDF/PostScript font database")
+}, error = function(e) {
+  message("Could not register Arial in PDF font database: ", e$message)
+})
+# If Arial TTF is not physically present, also register a substitute via systemfonts
+# (covers ragg/PNG rendering on plain Linux without the bundled fonts/)
+if (!any(systemfonts::system_fonts()$family == "Arial")) {
+  message("Arial TTF not found - registering Liberation Sans as Arial substitute for PNG rendering")
+  tryCatch({
+    systemfonts::register_font(
+      name = "Arial",
+      plain = systemfonts::system_fonts()$path[systemfonts::system_fonts()$family == "Liberation Sans" & systemfonts::system_fonts()$style == "Regular"][1],
+      bold = systemfonts::system_fonts()$path[systemfonts::system_fonts()$family == "Liberation Sans" & systemfonts::system_fonts()$style == "Bold"][1],
+      italic = systemfonts::system_fonts()$path[systemfonts::system_fonts()$family == "Liberation Sans" & systemfonts::system_fonts()$style == "Italic"][1],
+      bolditalic = systemfonts::system_fonts()$path[systemfonts::system_fonts()$family == "Liberation Sans" & systemfonts::system_fonts()$style == "Bold Italic"][1]
+    )
+    message("Liberation Sans registered as Arial substitute for PNG rendering")
+  }, error = function(e) {
+    message("Could not register font substitute: ", e$message)
+  })
+}

@@ -23,6 +23,22 @@ computers:
     metabojanitor_subpath: "MetaboJanitoR"
     figures_path: "Outputs/Figures/Final"
 
+  ailin:
+    user_home: "/Users/ailintang"
+    onedrive_path: "Library/CloudStorage/OneDrive-Emory/Chan Lab_AT"
+    metabojanitor_subpath: "MetaboJanitoR"
+    figures_path: "Outputs/Figures/Final"
+    # Native Mac paths (used when running R directly, not in Docker)
+    # base_data_path_override resolves: TFT_annot, TFT_annot_key, UFT_full, UFT_filtered, sample_type
+    base_data_path_override: "/Users/ailintang/Library/CloudStorage/OneDrive-Emory/Chan Lab_AT/Chan_studies_MS_raw/PGD_studies/Chan_PGD_9_2025"
+    clinical_metadata_override: "/Users/ailintang/Library/CloudStorage/OneDrive-Emory/Chan Lab_AT/Chan_studies_MS_raw/PGD_studies/Chan_PGD_9_2025/OHT Clinical Data Master Sheet.xlsx"
+    TFT_annot_QC_override: "/Users/ailintang/Library/CloudStorage/OneDrive-Emory/Chan Lab_AT/Chan_studies_MS_raw/PGD_studies/Chan_PGD_9_2025/MSMICA_QC.xlsx"
+    # Docker paths (used when running inside container with OneDrive mounted at /onedrive_data)
+    # These override the above when Docker is detected at runtime (see load_dynamic_config.R)
+    docker_base_data_path_override: "/onedrive_data/Chan_studies_MS_raw/PGD_studies/Chan_PGD_9_2025"
+    docker_clinical_metadata_override: "/onedrive_data/Chan_studies_MS_raw/PGD_studies/Chan_PGD_9_2025/OHT Clinical Data Master Sheet.xlsx"
+    docker_TFT_annot_QC_override: "/onedrive_data/Chan_studies_MS_raw/PGD_studies/Chan_PGD_9_2025/MSMICA_QC.xlsx"
+
 # Dynamic path templates (will be populated based on computer selection)
 paths:
   # Raw data path templates - {user_home} and {onedrive_path} will be substituted
