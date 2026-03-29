@@ -1,0 +1,579 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{fancyhdr}
+\setmainfont{Arial}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[R]{Page \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+\begin{center}
+\textit{\Large Supplementary Data for:}
+\end{center}
+
+\begin{center}
+\textbf{\Large Recipient Plasma Metabolomics as a Predictor of Heart Transplant Severe Primary Graft Dysfunction}
+\end{center}
+
+\vspace{1em}
+
+Joshua D. Preston\textsuperscript{1,2}, Clayton J.
+Rust\textsuperscript{1}, Aubrey C. Reed\textsuperscript{1}, Supreet S.
+Randhawa\textsuperscript{1}, Ailin Tang\textsuperscript{1}, Kimberly A.
+Rooney\textsuperscript{3}, Mikhael Kozmava\textsuperscript{3}, Jaclyn
+Weinberg\textsuperscript{2}, Lucy Avant\textsuperscript{1}, Catherine
+L.B. McGeoch\textsuperscript{1}, Gustavo A. Parrilla\textsuperscript{1},
+Jiada Zhan\textsuperscript{2}, ViLinh Tran\textsuperscript{2}, Michael
+E. Halkos\textsuperscript{1}, Muath M. Bishawi\textsuperscript{1}, Mani
+A. Daneshmand\textsuperscript{1}, Arshed A. Quyyumi\textsuperscript{3},
+Charles D. Searles\textsuperscript{3}, Young-Mi Go\textsuperscript{2},
+Dean P. Jones\textsuperscript{2}, Joshua L. Chan\textsuperscript{1}
+
+\vspace{1em}
+
+\textsuperscript{1}Division of Cardiothoracic Surgery, Department of
+Surgery, Emory University School of Medicine, Atlanta, GA, USA
+
+\textsuperscript{2}Division of Pulmonary, Allergy, Critical Care, and
+Sleep Medicine, Department of Medicine, Emory University School of
+Medicine, Atlanta, GA, USA
+
+\textsuperscript{3}Division of Cardiology, Department of Medicine, Emory
+University School of Medicine, Atlanta, GA, USA
+
+\vfill
+
+\section{Table of Contents}\label{table-of-contents}
+
+\textbf{Supplementary Figure S1} \dotfill 2
+
+\textbf{Supplementary Figure S2.1} \dotfill 3
+
+\textbf{Supplementary Figure S2.2} \dotfill 4
+
+\textbf{Supplementary Figure S2.3} \dotfill 5
+
+\textbf{Supplementary Figure S2.4} \dotfill 6
+
+\textbf{Supplementary Figure S2.5} \dotfill 7
+
+\textbf{Expanded Metabolomics Methods and Other Technical Details}
+\dotfill 8-9
+
+\quad \textit{Sample Collection and Processing} \dotfill 8
+
+\quad \textit{Metabolomics Profiling with Liquid Chromatography--Mass Spectrometry}
+\dotfill 8
+
+\quad \textit{Feature Extraction, Annotation, and Identification}
+\dotfill 8-9
+
+\quad \textit{Quality Control and Data Transformation} \dotfill 9
+
+\textbf{Statistical Analysis and Data Visualization} \dotfill 9-10
+
+\quad \textit{Partial Least Squares Discriminant Analysis and Volcano Plots}
+\dotfill 9
+
+\quad \textit{Pathway Enrichment Analysis} \dotfill 9-10
+
+\quad \textit{Identified and Annotated Metabolite Analysis} \dotfill 10
+
+\quad \textit{Sensitivity Analysis} \dotfill 10
+
+\textbf{References} \dotfill 11-12
+
+\newpage
+
+\includepdf[pages=-,pagecommand={\noindent\textbf{\Large Supplementary Figure S1}\vspace{0.5cm}}]{Components/Figures/PDF/S1.pdf}
+
+\includepdf[pages=-,pagecommand={\noindent\textbf{\Large Supplementary Figure S2.1}\vspace{0.2cm}\\\noindent\textit{\fontsize{11}{13}\selectfont Markers on x-axis indicate Y/N severe PGD status.}\vspace{0.3cm}}]{Components/Figures/PDF/S2.1.pdf}
+
+\includepdf[pages=-,pagecommand={\noindent\textbf{\Large Supplementary Figure S2.2}\vspace{0.2cm}\\\noindent\textit{\fontsize{11}{13}\selectfont Markers on x-axis indicate Y/N severe PGD status.}\vspace{0.3cm}}]{Components/Figures/PDF/S2.2.pdf}
+
+\includepdf[pages=-,pagecommand={\noindent\textbf{\Large Supplementary Figure S2.3}\vspace{0.2cm}\\\noindent\textit{\fontsize{11}{13}\selectfont Markers on x-axis indicate Y/N severe PGD status.}\vspace{0.3cm}}]{Components/Figures/PDF/S2.3.pdf}
+
+\includepdf[pages=-,pagecommand={\noindent\textbf{\Large Supplementary Figure S2.4}\vspace{0.2cm}\\\noindent\textit{\fontsize{11}{13}\selectfont Markers on x-axis indicate Y/N severe PGD status.}\vspace{0.3cm}}]{Components/Figures/PDF/S2.4.pdf}
+
+\includepdf[pages=-,pagecommand={\noindent\textbf{\Large Supplementary Figure S2.5}\vspace{0.5cm}}]{Components/Figures/PDF/S2.5.pdf}
+
+\section{\texorpdfstring{\textbf{Expanded Metabolomics Methods and Other
+Technical
+Details}}{Expanded Metabolomics Methods and Other Technical Details}}\label{expanded-metabolomics-methods-and-other-technical-details}
+
+In keeping with consensus reporting standards for metabolomics
+experiments,\textsuperscript{1} we provide in-depth details as follows:
+
+\subsection{\texorpdfstring{\emph{Sample Collection and
+Processing}}{Sample Collection and Processing}}\label{sample-collection-and-processing}
+
+Blood samples were collected immediately before transplant into K2EDTA
+plasma preparation tubes. Once samples were collected from patients,
+they were immediately placed on ice. The samples remained on ice and
+were centrifuged at 2500 x g for 15 minutes at 4°C within 5 hours of
+collection (the mean time from collection to processing for all samples
+= 1 hour). Following centrifugation, three aliquots were made from the
+supernatant, which were stored at -80°C shortly after.
+
+\subsection{\texorpdfstring{\emph{Metabolomics Profiling with Liquid
+Chromatography--Mass
+Spectrometry}}{Metabolomics Profiling with Liquid Chromatography--Mass Spectrometry}}\label{metabolomics-profiling-with-liquid-chromatographymass-spectrometry}
+
+High-resolution metabolomics was performed in the Emory Clinical
+Biomarkers Laboratory as previously described.\textsuperscript{2} Plasma
+samples were thawed, and 10 μL of plasma was added to 190 μL of
+acetonitrile containing 2\% internal standards. Samples were then
+vortexed and allowed to incubate on ice for 30 minutes. Following
+incubation, samples were centrifuged at 20,817 x g for 10 minutes at
+4°C. Supernatants were then transferred into autosampler vials. These
+were loaded onto autosampler plates and were kept at -20°C until
+analysis. Pooled control plasma (Equitech-Bio, SHP45) and National
+Institute of Standards and Technology (NIST) reference plasma were
+prepared and analyzed in tandem.
+
+\noindent\hspace{1.5em}Metabolomics analysis was conducted with a liquid
+chromatography--mass spectrometry system (LC--MS) consisting of a
+Vanquish Duo UHPLC coupled to an Orbitrap ID-X Tribrid Mass Spectrometer
+(Thermo Scientific). Autosampler plates containing samples were
+maintained at 4°C in the autosampler of the LC--MS throughout the
+analysis. Samples were analyzed in triplicate on a 5-min method using
+C18 chromatography coupled to negative electrospray ionization (ESI)
+(C18-) and hydrophilic interaction liquid chromatography coupled to
+positive ESI (HILIC+). Analyte separation for HILIC was performed with a
+Waters Acquity BEH Amide HILIC column (2.1 mm x 100 mm, 1.7 μm particle
+size) and gradient elution with LC--MS-grade solvents and additives. The
+HILIC mobile phases included (Buffer A) water with 1 mM ammonium acetate
+and 0.1\% formic acid and (Buffer B) 95\% acetonitrile with 1 mM
+ammonium acetate and 0.1\% formic acid. For the HILIC gradient, an
+initial 0.5 min hold at 90\% B was followed by a linear decrease to 20\%
+B from 0.6 to 2.55 min, a 2 min hold, and a 5-min re-equilibration
+period. C18 chromatography was performed on a Thermo Hypersil Gold C18
+column (2.1 mm x 100 mm, 1.9 μm particle size). The C18 mobile phases
+included (Buffer A) water with 1 mM ammonium acetate and (Buffer B) 99\%
+acetonitrile with 1 mM ammonium acetate. For the C18 gradient, an
+initial 0.5 min hold at 1\% B was followed by a 0.75 min linear increase
+to 99\% B, held for 3.75 min, and a 5-min re-equilibration period. The
+flow rate for both methods was 0.3 mL/min, and the column compartment
+was heated to 45 °C. The mass spectrometer was operated at 120k
+resolution and MS1 scans were collected for \textit{m/z} 85-1,275. Tune
+parameters consisted of sheath gas at 50, auxiliary gas at 10, and sweep
+gas at 1. The spray voltage was set to 3.50 kV for ESI+ and -2.75 kV for
+ESI-.
+
+\subsection{\texorpdfstring{\emph{Feature Extraction, Annotation, and
+Identification}}{Feature Extraction, Annotation, and Identification}}\label{feature-extraction-annotation-and-identification}
+
+ProteoWizard v3\textsuperscript{3} was used to convert raw spectral
+files to .mzXML files. Untargeted feature tables were then generated
+from extracted data using established laboratory workflows,
+software\textsuperscript{4--6} (namely, apLCMS and xMSAnalyzer), and an
+in-house R package, \textit{MetaboJanitoR}, which is available upon
+request. All feature tables were corrected for batch effects using
+ComBat\textsuperscript{7} from the \textit{sva}
+package.\textsuperscript{8}
+
+\noindent\hspace{1.5em}Untargeted feature tables were comprised of all
+HILIC+ and C18- features observed with a unique mass-to-charge ratio
+(\textit{m/z}) and corresponding retention time (RT).
+Identified/annotated feature tables were made up of Level
+1\textsuperscript{9} and Level 3\textsuperscript{9} identifications.
+Level 1 identifications were obtained by ion dissociation mass
+spectrometry relative to authentic standards (mass error = ± 5 ppm,
+retention time threshold = ± 30 seconds). Level 3 identifications were
+made using an in-house annotation algorithm (see
+\url{https://github.com/jamesjiadazhan} for the future release of this R
+package upon its publication), which generates annotations based on
+precursor-product correlations (note: this version of the algorithm
+chose a single best adduct for the feature table based on the strength
+of the precursor-product correlation alone). All raw data files (.mzXML
+format) and untargeted feature tables analyzed for this study will be
+available on October 31, 2026, through the NIH Common Fund's National
+Metabolomics Data Repository (NMDR) website, Metabolomics Workbench
+(Project ID PR002742; Study ID ST004328; Project DOI
+\url{http://dx.doi.org/10.21228/M87549}).
+
+\subsection{\texorpdfstring{\emph{Quality Control and Data
+Transformation}}{Quality Control and Data Transformation}}\label{quality-control-and-data-transformation}
+
+Features that were not detected in at least 80\% of samples were
+excluded from analysis, but were included as background for pathway
+enrichment analysis. All `0' values (indicating non-detection by the
+instrument) were replaced with ½ the minimum value for that feature
+detected across all samples.\textsuperscript{10} Following this, all
+intensity (peak area) values were log\(_2\)-transformed prior to further
+analysis. Features in identified/annotated feature tables that
+significantly differed between study groups (Severe PGD versus No Severe
+PGD) were manually inspected and evaluated for biological plausibility
+and annotation quality control. Only annotated features encompassing
+endogenous, microbiome-derived, or relevant pharmacological metabolites
+were retained for analysis and visualization.
+
+\section{\texorpdfstring{\textbf{Statistical Analysis and Data
+Visualization}}{Statistical Analysis and Data Visualization}}\label{statistical-analysis-and-data-visualization}
+
+The complete analytical pipeline and source code used for data
+processing and statistical analyses are publicly available at
+\url{https://github.com/jdpreston30/PGD-preop-metabolomics}. A
+containerized Docker image of the complete computational environment is
+available at Docker Hub
+(\url{https://hub.docker.com/r/jdpreston30/pgd-preop-metabolomics}), and
+the archived analysis pipeline is permanently available at Zenodo
+(\url{https://doi.org/10.5281/zenodo.17875844}).
+
+\noindent\hspace{1.5em}Data were analyzed and visualized using Microsoft
+Excel (Mac v16.101.294, Microsoft Corporation, 2025), R
+(v4.5.1),\textsuperscript{11} and MetaboAnalyst
+(v6.0)\textsuperscript{12} via the \textit{MetaboAnalystR}
+package.\textsuperscript{13,14} All code was written, compiled, and run
+in Visual Studio Code (v1.104.2, Microsoft Corporation, 2025). All data
+visualizations were created using \textit{ggplot2},\textsuperscript{15}
+\textit{igraph},\textsuperscript{16--18} and
+\textit{ggraph}.\textsuperscript{19} All figures were compiled using
+\textit{cowplot}.\textsuperscript{20} Epidemiologic statistics were
+performed using the \textit{TernTablesR} package.\textsuperscript{21}
+For all analyses, statistical significance was set at α = .05.
+
+\subsection{\texorpdfstring{\emph{Partial Least Squares Discriminant
+Analysis and Volcano
+Plots}}{Partial Least Squares Discriminant Analysis and Volcano Plots}}\label{partial-least-squares-discriminant-analysis-and-volcano-plots}
+
+Partial Least Squares Discriminant Analysis (PLS-DA) was performed using
+the R package, \textit{mixOmics}.\textsuperscript{22} Volcano plots were
+created by calculating \textit{P} values (based on Welch's
+\textit{t}-tests on log\(_2\)-transformed data) to compare the means of
+each (untargeted) feature between groups, while fold changes were
+determined using untransformed data. All \textit{P} value calculations
+were performed using R's \textit{stats} package. For purposes of
+visualization, \textit{P} values were then -log\(_{10}\)-transformed,
+and fold changes were log\(_2\)-transformed.
+
+\subsection{\texorpdfstring{\emph{Pathway Enrichment
+Analysis}}{Pathway Enrichment Analysis}}\label{pathway-enrichment-analysis}
+
+All pathway enrichment analysis was performed using
+Mummichog.\textsuperscript{23} A full list of \textit{P} values
+comparing means of all features between groups was first generated in R
+using the \textit{stats} package via Welch's \textit{t}-tests. These
+features, including the \textit{m/z}, retention time, and ESI mode,
+along with their corresponding \textit{P} values, were then analyzed
+using the `Functional Analysis' tool for LC--MS from
+MetaboAnalyst\textsuperscript{12} (run via the \textit{MetaboAnalystR}
+package\textsuperscript{13}), which utilizes
+Mummichog\textsuperscript{23} as its core algorithm. Notably, this tool
+allows for the usage of Mummichog v2.0, which takes into account
+retention time and ESI mode, whereas the original algorithm simply used
+\textit{m/z}. The parameters for the pathway enrichment included the
+following: mixed mode, 5 ppm mass tolerance, primary ions enforced,
+\textit{P} value cutoff = default for top 10\% of peaks, KEGG and MFN
+\textit{homo sapiens} databases. A bubble plot was then constructed
+based on the \textit{P} values (Fisher's) and enrichment factors
+generated by the algorithm output.
+
+\subsection{\texorpdfstring{\emph{Identified and Annotated Metabolite
+Analysis}}{Identified and Annotated Metabolite Analysis}}\label{identified-and-annotated-metabolite-analysis}
+
+For identified/annotated metabolites, Welch's \textit{t}-tests were
+employed to determine the \textit{P} values comparing means between each
+group. FDR adjustments were performed using the Benjamini-Hochberg (BH)
+procedure. A representative set of various families of metabolites was
+selected and displayed in the main text figures (\textbf{​Fig. 3​A-D}),
+but all significantly differing annotated or identified features are
+displayed in \textbf{Supplementary Fig. S2}. Both raw \textit{P} values
+and FDR-adjusted \textit{q} values are displayed on all plots displaying
+annotated/identified metabolites.
+
+\subsection{\texorpdfstring{\emph{Sensitivity
+Analysis}}{Sensitivity Analysis}}\label{sensitivity-analysis}
+
+Given the exploratory and hypothesis-generating nature of the untargeted
+metabolomics study performed herein, which measured over 20,000
+individual metabolic features, a conventional power analysis is not
+applicable. However, we conducted a quantitative post-hoc sensitivity
+analysis (further details of which can be found in the GitHub
+repository) to determine the minimum detectable effect size based on the
+group sizes in our study. With 62 patients (8 with severe PGD and 54
+without), we had \textasciitilde80\% power (α = .05) to detect a minimum
+standardized mean difference of Cohen's d ≈ 1.08. Based on observed
+within-group variance (calculated using the filtered, i.e., post-QC,
+untargeted feature table), the median minimum detectable fold-change was
+1.87 (IQR 1.46--2.99) across all features. Considering this, this study
+was powered to detect very large metabolic differences between groups,
+which is consistent with the exploratory and hypothesis-generating
+design. More subtle differences would require larger cohorts in future
+studies.
+
+\newpage
+
+\section*{\texorpdfstring{\textbf{References}}{References}}\label{references}
+\addcontentsline{toc}{section}{\textbf{References}}
+
+\protect\phantomsection\label{refs}
+\begin{CSLReferences}{0}{1}
+\bibitem[\citeproctext]{ref-sumnerProposedMinimumReporting2007}
+\CSLLeftMargin{1. }%
+\CSLRightInline{Sumner L.W., Amberg A., Barrett D., et al. Proposed
+minimum reporting standards for chemical analysis: {Chemical Analysis
+Working Group} ({CAWG}) {Metabolomics Standards Initiative} ({MSI}).
+\emph{Metabolomics}. 2007;3(3):211-221.
+doi:\href{https://doi.org/10.1007/s11306-007-0082-2}{10.1007/s11306-007-0082-2}}
+
+\bibitem[\citeproctext]{ref-liuReferenceStandardizationQuantification2020}
+\CSLLeftMargin{2. }%
+\CSLRightInline{Liu K.H., Nellis M., Uppal K., et al. Reference
+standardization for quantification and harmonization of large-scale
+metabolomics. \emph{Analytical Chemistry}. 2020;92(13):8836-8844.
+doi:\href{https://doi.org/10.1021/acs.analchem.0c00338}{10.1021/acs.analchem.0c00338}}
+
+\bibitem[\citeproctext]{ref-chambersCrossplatformToolkitMass2012}
+\CSLLeftMargin{3. }%
+\CSLRightInline{Chambers M.C., Maclean B., Burke R., et al. A
+cross-platform toolkit for mass spectrometry and proteomics.
+\emph{Nature Biotechnology}. 2012;30(10):918-920.
+doi:\href{https://doi.org/10.1038/nbt.2377}{10.1038/nbt.2377}}
+
+\bibitem[\citeproctext]{ref-uppal2013}
+\CSLLeftMargin{4. }%
+\CSLRightInline{Uppal K., Soltow Q.A., Strobel F.H., et al.
+{xMSanalyzer}: {automated} pipeline for improved feature detection and
+downstream analysis of large-scale, non-targeted metabolomics data.
+\emph{BMC Bioinformatics}. 2013;14(1):15.
+doi:\href{https://doi.org/10.1186/1471-2105-14-15}{10.1186/1471-2105-14-15}}
+
+\bibitem[\citeproctext]{ref-jarrellPlasmaAcylcarnitineLevels2020}
+\CSLLeftMargin{5. }%
+\CSLRightInline{Jarrell Z.R., Smith M.R., Hu X., et al. Plasma
+acylcarnitine levels increase with healthy aging. \emph{Aging}.
+2020;12(13):13555-13570.
+doi:\href{https://doi.org/10.18632/aging.103462}{10.18632/aging.103462}}
+
+\bibitem[\citeproctext]{ref-yuApLCMSAdaptiveProcessing2009}
+\CSLLeftMargin{6. }%
+\CSLRightInline{Yu T., Park Y., Johnson J.M., Jones D.P.
+{apLCMS}---{adaptive} processing of high-resolution {LC/MS} data.
+\emph{Bioinformatics}. 2009;25(15):1930-1936.
+doi:\href{https://doi.org/10.1093/bioinformatics/btp291}{10.1093/bioinformatics/btp291}}
+
+\bibitem[\citeproctext]{ref-johnson2007}
+\CSLLeftMargin{7. }%
+\CSLRightInline{Johnson W.E., Li C., Rabinovic A. Adjusting batch
+effects in microarray expression data using empirical {Bayes} methods.
+\emph{Biostatistics (Oxford, England)}. 2007;8(1):118-127.
+doi:\href{https://doi.org/10.1093/biostatistics/kxj037}{10.1093/biostatistics/kxj037}}
+
+\bibitem[\citeproctext]{ref-leek2012}
+\CSLLeftMargin{8. }%
+\CSLRightInline{Leek J.T., Johnson W.E., Parker H.S., Jaffe A.E., Storey
+J.D. The sva package for removing batch effects and other unwanted
+variation in high-throughput experiments. \emph{Bioinformatics (Oxford,
+England)}. 2012;28(6):882-883.
+doi:\href{https://doi.org/10.1093/bioinformatics/bts034}{10.1093/bioinformatics/bts034}}
+
+\bibitem[\citeproctext]{ref-schymanskiIdentifyingSmallMolecules2014}
+\CSLLeftMargin{9. }%
+\CSLRightInline{Schymanski E.L., Jeon J., Gulde R., et al. Identifying
+small molecules via high resolution mass spectrometry: Communicating
+confidence. \emph{Environmental Science \& Technology}.
+2014;48(4):2097-2098.
+doi:\href{https://doi.org/10.1021/es5002105}{10.1021/es5002105}}
+
+\bibitem[\citeproctext]{ref-weiMissingValueImputation2018}
+\CSLLeftMargin{10. }%
+\CSLRightInline{Wei R., Wang J., Su M., et al. Missing value imputation
+approach for mass spectrometry-based metabolomics data. \emph{Scientific
+Reports}. 2018;8(1):663.
+doi:\href{https://doi.org/10.1038/s41598-017-19120-0}{10.1038/s41598-017-19120-0}}
+
+\bibitem[\citeproctext]{ref-rcoreteam2025}
+\CSLLeftMargin{11. }%
+\CSLRightInline{{R}: A language and environment for statistical
+computing. {R Core Team}; 2025. \url{https://www.R-project.org/}.
+{[}Accessed 10 December 2025{]}}
+
+\bibitem[\citeproctext]{ref-pangMetaboAnalyst60Unified2024}
+\CSLLeftMargin{12. }%
+\CSLRightInline{Pang Z., Lu Y., Zhou G., et al. {MetaboAnalyst} 6.0:
+{towards} a unified platform for metabolomics data processing, analysis
+and interpretation. \emph{Nucleic Acids Research}.
+2024;52(W1):W398-W406.
+doi:\href{https://doi.org/10.1093/nar/gkae253}{10.1093/nar/gkae253}}
+
+\bibitem[\citeproctext]{ref-xia2025}
+\CSLLeftMargin{13. }%
+\CSLRightInline{{MetaboAnalystR} 4.2: {a} unified {LC-MS/MS} workflow
+for global metabolomics and exposomics. {Xia Lab}; 2025.
+\url{https://github.com/xia-lab/MetaboAnalystR}. {[}Accessed 10 December
+2025{]}}
+
+\bibitem[\citeproctext]{ref-MetaboAnalystRv3}
+\CSLLeftMargin{14. }%
+\CSLRightInline{Pang Z., Chong J., Li S., Xia J. {MetaboAnalystR} 3.0:
+Toward an optimized workflow for global metabolomics.
+\emph{Metabolites}. 2020.
+doi:\href{https://doi.org/doi:\%2010.3390/metabo10050186}{doi:
+10.3390/metabo10050186}}
+
+\bibitem[\citeproctext]{ref-wickhamGgplot2ElegantGraphics2016}
+\CSLLeftMargin{15. }%
+\CSLRightInline{Wickham H. \emph{ggplot2: Elegant graphics for data
+analysis}. Second edition. Springer; 2016.}
+
+\bibitem[\citeproctext]{ref-csardiIgraphSoftwarePackage2006}
+\CSLLeftMargin{16. }%
+\CSLRightInline{Csárdi G., Nepusz T. The igraph software package for
+complex network research. \emph{InterJournal}. 2006;Complex
+Systems:1695. \url{https://igraph.org}}
+
+\bibitem[\citeproctext]{ref-antonovIgraphEnablesFast2023}
+\CSLLeftMargin{17. }%
+\CSLRightInline{Antonov M., Csárdi G., Horvát S., et al. {igraph}
+enables fast and robust network analysis across programming languages.
+\emph{arXiv preprint arXiv:231110260}. 2023.
+doi:\href{https://doi.org/10.48550/arXiv.2311.10260}{10.48550/arXiv.2311.10260}}
+
+\bibitem[\citeproctext]{ref-csardiIgraphNetworkAnalysis2025}
+\CSLLeftMargin{18. }%
+\CSLRightInline{Csárdi G., Nepusz T., Traag V., et al. {igraph}: Network
+analysis and visualization in {R}. 2025.
+doi:\href{https://doi.org/10.5281/zenodo.7682609}{10.5281/zenodo.7682609}}
+
+\bibitem[\citeproctext]{ref-pedersenGgraphImplementationGrammar2025}
+\CSLLeftMargin{19. }%
+\CSLRightInline{Pedersen T.L. {ggraph}: An implementation of grammar of
+graphics for graphs and networks. 2025.
+\url{https://ggraph.data-imaginist.com}}
+
+\bibitem[\citeproctext]{ref-clauso.wilke2025}
+\CSLLeftMargin{20. }%
+\CSLRightInline{Wilke C.O. {cowplot}: Streamlined plot theme and plot
+annotations for {'}ggplot2{'}. 2025.}
+
+\bibitem[\citeproctext]{ref-preston2025}
+\CSLLeftMargin{21. }%
+\CSLRightInline{Preston J.D. {TernTablesR}: Automated statistics and
+table generation for clinical research in {R}. 2025.
+\url{https://github.com/jdpreston30/TernTablesR}. {[}Accessed 10
+December 2025{]}}
+
+\bibitem[\citeproctext]{ref-rohart2017}
+\CSLLeftMargin{22. }%
+\CSLRightInline{Rohart F., Gautier B., Singh A., Lê Cao K.A. {mixOmics}:
+An {R} package for `omics feature selection and multiple data
+integration. Schneidman D., ed. \emph{PLOS Computational Biology}.
+2017;13(11):e1005752.
+doi:\href{https://doi.org/10.1371/journal.pcbi.1005752}{10.1371/journal.pcbi.1005752}}
+
+\bibitem[\citeproctext]{ref-li2013}
+\CSLLeftMargin{23. }%
+\CSLRightInline{Li S., Park Y., Duraisingham S., et al. Predicting
+network activity from high throughput metabolomics. \emph{PLoS
+computational biology}. 2013;9(7):e1003123.
+doi:\href{https://doi.org/10.1371/journal.pcbi.1003123}{10.1371/journal.pcbi.1003123}}
+
+\end{CSLReferences}
+
+\end{document}
